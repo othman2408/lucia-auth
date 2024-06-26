@@ -1,6 +1,6 @@
 # Lucia Auth Implementation
 
-This project demonstrates how to implement authentication using Lucia.js with password and email. It handles user sign-in, sign-up, and sign-out processes, and utilizes Docker to create a local PostgreSQL database.
+This project demonstrates how to implement authentication using [Lucia auth](https://lucia-auth.com) with password and email. It handles user sign-in, sign-up, and sign-out processes, and utilizes Docker to create a local PostgreSQL database.
 
 ### How to Run the Project
 1. #### Clone the Repository
