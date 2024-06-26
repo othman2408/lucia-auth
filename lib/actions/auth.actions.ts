@@ -2,7 +2,6 @@
 
 import { SingUpSchema } from "@/app/types/ZodSchemas";
 import { z } from "zod";
-import { hash } from "@node-rs/argon2";
 import { generateIdFromEntropySize } from "lucia";
 import { lucia } from "@/lib/auth";
 import db from "@/lib/db/dbConnection";
@@ -13,13 +12,7 @@ export const signUp = async (values: z.infer<typeof SingUpSchema>) => {
   //   console.log(values);
 
   // Hash the password & generate a unique id for the user
-  const hashedPassword = await hash(values.password, {
-    // recommended minimum parameters
-    memoryCost: 19456,
-    timeCost: 2,
-    outputLen: 32,
-    parallelism: 1,
-  });
+  const hashedPassword = 1;
   const userId = generateIdFromEntropySize(10);
 
   try {
