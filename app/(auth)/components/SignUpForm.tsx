@@ -15,6 +15,8 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { SingUpSchema } from "@/app/types/ZodSchemas"
+import { signUp } from "@/lib/actions/auth.actions"
+import { toast } from "@/components/ui/use-toast"
 
 
 
@@ -33,8 +35,24 @@ export default function SignUpForm() {
 
 
     // onSubmit function
-    function onSubmit(values: z.infer<typeof SingUpSchema>) {
-        console.log(values)
+    async function onSubmit(values: z.infer<typeof SingUpSchema>) {
+        // console.log(values)
+
+        const res = await signUp(values);
+
+        if (res.error) {
+            toast({
+                variant: "destructive",
+                description: res.error,
+            })
+        } else {
+            toast({
+                variant: "default",
+                description: res.success
+            })
+
+        }
+
     }
 
 
