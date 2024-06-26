@@ -18,7 +18,7 @@ This project demonstrates how to implement authentication using Lucia.js with pa
     docker-compose up -d
     ```
     1. Navigate to [http://localhost:5050](http://localhost:5050).
-    2. Log in using the Email and Password defined in the `docker-compose.yaml` file.
+    2. Login using the Email and Password defined in the `docker-compose.yaml` file.
     3. Register a server with the following details:
         - **Name**: `postres_db`
         - **Hostname/Address**: `postgres`
