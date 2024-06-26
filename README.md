@@ -53,6 +53,3 @@ This project demonstrates how to implement authentication using Lucia.js with pa
     ```sh
     pnpm run dev
     ```
-
-8. #### Access the Application
-    Open your browser and navigate to `http://localhost:3000`.
