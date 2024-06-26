@@ -1,5 +1,3 @@
-import SignUpForm from "@/app/(auth)/components/SignUpForm";
-
 import {
     Card,
     CardContent,
@@ -7,8 +5,9 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-import { validateRequest } from "@/lib/auth";
+import SignInForm from "@/app/(auth)/components/SignInForm";
 import { redirect } from "next/navigation";
+import { validateRequest } from "@/lib/auth";
 
 export default async function SignUp() {
 
@@ -19,16 +18,15 @@ export default async function SignUp() {
         return redirect("/");
     }
 
-
     return (
         <div className="flex items-center justify-center h-screen">
             <Card>
                 <CardHeader>
-                    <CardTitle>Sign Up</CardTitle>
-                    <CardDescription>Sign up to access the app</CardDescription>
+                    <CardTitle>Sign In</CardTitle>
+                    <CardDescription>Sign in to access the app</CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <SignUpForm />
+                    <SignInForm />
                 </CardContent>
             </Card>
         </div>

@@ -15,3 +15,9 @@ export const SingUpSchema = z
     message: "Passwords must match",
     path: ["confirmPassword"],
   });
+
+// SignIn zod schema
+export const SingInSchema = z.object({
+  username: z.string({ message: "Username cannot be empty" }).min(2),
+  password: z.string({ message: "Password cannot be empty" }),
+});

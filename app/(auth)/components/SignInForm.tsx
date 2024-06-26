@@ -14,34 +14,34 @@ import {
     FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { SingUpSchema } from "@/app/types/ZodSchemas"
-import { signUp } from "@/lib/actions/auth.actions"
+import { SingInSchema } from "@/app/types/ZodSchemas"
+import { signIn } from "@/lib/actions/auth.actions"
 import { toast } from "@/components/ui/use-toast"
 import { useRouter } from "next/navigation"
 
 
 
 // SignUpForm component
-export default function SignInForm() {
+export default function SignUpForm() {
 
     const router = useRouter();
 
     // useForm hook
-    const form = useForm<z.infer<typeof SingUpSchema>>({
-        resolver: zodResolver(SingUpSchema),
+    const form = useForm<z.infer<typeof SingInSchema>>({
+        resolver: zodResolver(SingInSchema),
         defaultValues: {
             username: "",
             password: "",
-            confirmPassword: "",
         },
     })
 
 
     // onSubmit function
-    async function onSubmit(values: z.infer<typeof SingUpSchema>) {
+    async function onSubmit(values: z.infer<typeof SingInSchema>) {
         // console.log(values)
 
-        const res = await signUp(values);
+        const res = await signIn(values);
+
 
         if (res.error) {
             toast({
@@ -51,7 +51,7 @@ export default function SignInForm() {
         } else {
             toast({
                 variant: "default",
-                description: "Account created successfully",
+                description: "You have successfully signed in!",
             })
 
             // Reset the form
@@ -103,23 +103,8 @@ export default function SignInForm() {
 
                     )}
                 />
-                {/* CONFIRM PASSWORD fields */}
-                <FormField
-                    control={form.control}
-                    name="confirmPassword"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Confirm Password</FormLabel>
-                            <FormControl>
-                                <Input placeholder="confirm your password" type="password" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-
-                    )}
-                />
                 {/* SUBMIT BUTTON */}
-                <Button type="submit">Sign Up</Button>
+                <Button type="submit">Sign in</Button>
             </form>
         </Form>
     )
