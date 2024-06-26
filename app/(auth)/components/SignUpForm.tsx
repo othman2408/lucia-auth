@@ -48,7 +48,7 @@ export default function SignUpForm() {
         } else {
             toast({
                 variant: "default",
-                description: "Sign up successful",
+                description: "Account created successfully",
             })
 
         }
