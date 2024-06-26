@@ -2,19 +2,25 @@
 
 import { SingUpSchema } from "@/app/types/ZodSchemas";
 import { z } from "zod";
-import { Argon2id } from "oslo/password";
-import { generateId } from "lucia";
+import { hash } from "@node-rs/argon2";
+import { generateIdFromEntropySize } from "lucia";
+import { lucia } from "@/lib/auth";
 import db from "@/lib/db/dbConnection";
-import { userTable } from "../db/schema";
-import { lucia } from "../auth";
+import { userTable } from "@/lib/db/schema";
 import { cookies } from "next/headers";
 
 export const signUp = async (values: z.infer<typeof SingUpSchema>) => {
   //   console.log(values);
 
   // Hash the password & generate a unique id for the user
-  const hashedPassword = await new Argon2id().hash(values.password);
-  const userId = generateId(15);
+  const hashedPassword = await hash(values.password, {
+    // recommended minimum parameters
+    memoryCost: 19456,
+    timeCost: 2,
+    outputLen: 32,
+    parallelism: 1,
+  });
+  const userId = generateIdFromEntropySize(10);
 
   try {
     // Insert the user into the database
@@ -32,7 +38,7 @@ export const signUp = async (values: z.infer<typeof SingUpSchema>) => {
 
     // Generate a session token for the user
     const session = await lucia.createSession(userId, {
-      expiresIn: "1d",
+      expiresIn: 60 * 60 * 24, // 24 hours
     });
 
     // Create a session cookie
