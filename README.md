@@ -52,3 +52,29 @@ docker-compose up -d
     ```sh
     pnpm run dev
     ```
+
+#### Project Structure
+```
+lucia-auth/
+├── app
+│   ├── (auth)
+│   │   ├── components
+│   │   │   ├── SignInForm.tsx       # Sign-in form component
+│   │   │   └── SignUpForm.tsx       # Sign-up form component
+│   │   ├── sign-in
+│   │   │   └── page.tsx             # Sign-in page
+│   │   └── sign-up
+│   │       └── page.tsx             # Sign-up page
+│   └── types
+│       └── ZodSchemas.ts            # Type definitions using Zod
+├── lib
+│   ├── actions
+│   │   └── auth.actions.ts          # Authentication actions
+│   ├── auth.ts                      # Authentication handler
+│   ├── db
+│   │   ├── adapter.ts               # Database adapter
+│   │   ├── dbConnection.ts          # Database connection setup
+│   │   └── schema.ts                # Database schema definitions
+│   └── utils.ts                     # Utility functions
+└── README.md                        # Project README file
+```
