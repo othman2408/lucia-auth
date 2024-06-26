@@ -48,10 +48,13 @@ export default function SignUpForm() {
                 variant: "destructive",
                 description: res.error,
             })
+
+            // Reset the form
+            form.reset();
         } else {
             toast({
                 variant: "default",
-                description: "You have successfully signed in!",
+                description: "You have successfully signed in!"
             })
 
             // Reset the form
